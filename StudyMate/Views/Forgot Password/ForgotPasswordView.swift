@@ -35,13 +35,14 @@ struct ForgotPasswordView: View {
             PasswordPath()
             VStack {
                 Spacer()
-                    .frame(height: 30)
+                    .frame(height: 10)
 
-                VStack(spacing: 40) {
+                VStack(spacing: 30) {
                     Text("Forgot your password?")
                         .font(.custom("AveriaGruesaLibre-Regular", size: 48))
                         .foregroundStyle(.customBlue)
                         .frame(maxWidth: .infinity, alignment: .leading)
+                        .fixedSize(horizontal: false, vertical: true)
                         .padding(.top, 30)
                     Text("No worries! Just enter the email address associated with your account and we’ll send you a link to reset you password.")
                         .frame(maxWidth: .infinity, alignment: .leading)
