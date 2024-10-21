@@ -81,7 +81,7 @@ struct ForgotPasswordView: View {
                 }
                 Spacer()
             }
-            .frame(maxWidth: 325)
+            .frame(maxWidth: 350)
         }
     }
 }
