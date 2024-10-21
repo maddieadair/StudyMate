@@ -30,7 +30,7 @@ struct SignInView: View {
     @State private var password: String = ""
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack {
                 Color.customPink.edgesIgnoringSafeArea(.all)
                 DrawingPaths()
@@ -112,7 +112,7 @@ struct SignInView: View {
                     }
                     Spacer()
                 }
-                .frame(maxWidth: 325)
+                .frame(maxWidth: 350)
             }
         }
     }
