@@ -15,99 +15,99 @@ struct ProfileView: View {
     var year: String
     var description: String
     
+    @State private var showingAlert = false
+    
     var body: some View {
-            ScrollView {
-                VStack(spacing: 30) {
-                    RoundedRectangle(cornerRadius: 80,
-                                     style: .continuous)
-                    .aspectRatio(1.35, contentMode: .fill)
-                    .overlay(
-                        Image("profilePic")
-                            .resizable()
-                            .scaledToFill()
-                            .offset(x: -50.0, y: 20.0)
-                    )
-                    .frame(width: 300, height: 300, alignment: .leading)
-                    .clipShape(RoundedRectangle(cornerRadius: 80,
-                                                style: .continuous))
-                    
-                    VStack(spacing: 20) {
-                        VStack {
-                            Text(name)
-                                .font(.custom("AveriaGruesaLibre-Regular", size: 40))
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                            
-                            Text("@\(username)")
-                                .font(.system(size: 20, weight: .semibold))
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                        }
+        ScrollView {
+            VStack(spacing: 30) {
+                RoundedRectangle(cornerRadius: 80,
+                                 style: .continuous)
+                .aspectRatio(1.35, contentMode: .fill)
+                .overlay(
+                    Image("profilePic")
+                        .resizable()
+                        .scaledToFill()
+                        .offset(x: -52.0, y: 20.0)
+                )
+                .frame(width: 350, height: 350, alignment: .leading)
+                .clipShape(RoundedRectangle(cornerRadius: 80,
+                                            style: .continuous))
+                
+                VStack(spacing: 20) {
+                    VStack {
+                        Text(name)
+                            .font(.custom("AveriaGruesaLibre-Regular", size: 40))
+                            .frame(maxWidth: .infinity, alignment: .leading)
                         
-                        VStack(spacing: 30) {
-                            Text("\(major) - \(year)")
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .fontWeight(.medium)
-                            
-                            Text(description)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .fontWeight(.medium)
-                        }
-                        
+                        Text("@\(username)")
+                            .font(.system(size: 20, weight: .semibold))
+                            .frame(maxWidth: .infinity, alignment: .leading)
                     }
-                    .padding(.horizontal, 25)
                     
-                    VStack(spacing: 10) {
-                        HStack {
-                            VStack(spacing: 15) {
-                                Text("Edit Profile")
-                                    .fontWeight(.semibold)
-                                
-                                NavigationLink(destination: EditProfileView().toolbar(.hidden, for: .tabBar)) {
-                                    Image(systemName: "arrow.up.forward")
-                                        .foregroundStyle(.black)
-                                        .frame(maxWidth: .infinity,  alignment: .trailing)
-                                    
-                                }
-                            }
-                            .frame(maxWidth: .infinity, maxHeight: 75, alignment: .leading)
-                            .padding()
-                            .background(.greyBlue)
-                            .cornerRadius(28)
-                            
-                            VStack(spacing: 15) {
-                                Text("Post History")
-                                    .fontWeight(.semibold)
-                                
-                                NavigationLink(destination: PostHistoryView().toolbar(.hidden, for: .tabBar)) {
-                                    Image(systemName: "arrow.up.forward")
-                                        .foregroundStyle(.black)
-                                        .frame(maxWidth: .infinity,  alignment: .trailing)
-                                    
-                                }
-                            }
-                            .frame(maxWidth: .infinity, maxHeight: 75, alignment: .leading)
-                            .padding()
-                            .background(.customYellow)
-                            .cornerRadius(28)
-                        }
-                        .frame(maxWidth: .infinity)
+                    VStack(alignment: .leading, spacing: 30) {
+                        Text("\(major) - \(year)")
+                            .fontWeight(.medium)
                         
-                        NavigationLink(destination: SignInView().navigationBarBackButtonHidden(true)) {
-                            Text("Log Out")
-                                .foregroundStyle(.black)
-                                .fontWeight(.semibold)
-                        }
-                        .frame(maxWidth: .infinity, maxHeight: 30, alignment: .leading)
-                        .padding()
-                        .background(.customPink)
-                        .cornerRadius(20)
+                        Text(description)
+                            .fontWeight(.medium)
                     }
-                    .padding(.horizontal, 20)
-                    
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     
                 }
-                .padding()
+                
+                VStack(spacing: 10) {
+                    HStack {
+                        VStack(spacing: 15) {
+                            Text("Edit Profile")
+                                .fontWeight(.semibold)
+                            
+                            NavigationLink(destination: EditProfileView().toolbar(.hidden, for: .tabBar)) {
+                                Image(systemName: "arrow.up.forward")
+                                    .foregroundStyle(.black)
+                                    .frame(maxWidth: .infinity,  alignment: .trailing)
+                                
+                            }
+                        }
+                        .frame(maxWidth: .infinity, maxHeight: 75, alignment: .leading)
+                        .padding()
+                        .background(.greyBlue)
+                        .cornerRadius(28)
+                        
+                        VStack(spacing: 15) {
+                            Text("Post History")
+                                .fontWeight(.semibold)
+                            
+                            NavigationLink(destination: PostHistoryView().toolbar(.hidden, for: .tabBar)) {
+                                Image(systemName: "arrow.up.forward")
+                                    .foregroundStyle(.black)
+                                    .frame(maxWidth: .infinity,  alignment: .trailing)
+                                
+                            }
+                        }
+                        .frame(maxWidth: .infinity, maxHeight: 75, alignment: .leading)
+                        .padding()
+                        .background(.customYellow)
+                        .cornerRadius(28)
+                    }
+                    .frame(maxWidth: .infinity)
+                    
+                    NavigationLink(destination: SignInView().navigationBarBackButtonHidden(true)) {
+                        Text("Log Out")
+                            .foregroundStyle(.black)
+                            .fontWeight(.semibold)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: 30, alignment: .leading)
+                    .padding()
+                    .background(.customPink)
+                    .cornerRadius(20)
+                }
+                
+                
             }
         }
+        .frame(maxWidth: 350)
+
+    }
 }
 
 #Preview {

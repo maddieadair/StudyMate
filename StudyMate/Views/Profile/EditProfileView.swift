@@ -27,7 +27,7 @@ struct EditProfileView: View {
                     Image("profilePic")
                         .resizable()
                         .scaledToFill()
-                        .offset(x: -50.0, y: 20.0)
+                        .offset(x: -52.0, y: 20.0)
                 )
                 .frame(width: 300, height: 300, alignment: .leading)
                 .clipShape(RoundedRectangle(cornerRadius: 80,
