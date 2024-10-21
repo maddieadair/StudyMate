@@ -15,11 +15,11 @@ struct MoreDetailsView: View {
     @State private var password: String = ""
     @State private var confirmPassword: String = ""
     
-    @State private var selection = "Select"
+    @State private var yearSelection = "Select"
     let years = ["Select", "Freshman", "Sophomore", "Junior", "Senior", "Graduate Student", "Other"]
     
-    @State private var selectedTheme = "Dark"
-       let themes = ["Dark", "Light", "Automatic"]
+    @State private var majorSelection = majors[0]
+
     var body: some View {
         VStack {
             Spacer()
@@ -43,7 +43,7 @@ struct MoreDetailsView: View {
                 HStack {
                     Text("Year")
                     Spacer()
-                    Picker("Appearance", selection: $selection)
+                    Picker("Appearance", selection: $yearSelection)
                     {
                         ForEach(years, id: \.self) {
                             Text($0)
@@ -64,9 +64,9 @@ struct MoreDetailsView: View {
                 HStack {
                     Text("Major")
                     Spacer()
-                    Picker("Major", selection: $selection)
+                    Picker("Major", selection: $majorSelection)
                     {
-                        ForEach(years, id: \.self) {
+                        ForEach(majors, id: \.self) {
                             Text($0)
                         }
                     }
