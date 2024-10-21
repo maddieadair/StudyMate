@@ -7,77 +7,78 @@
 
 import SwiftUI
 
-struct post {
-    var title: String
-    var description: String
-    var time: String
-    var username: String
-    var subject: String
-    var firstName: String
-    var lastName: String
-    var image: String?
-    var profilePic: String
-}
-
-var placeholder = [
-    post(title: "Diode Models and Circuits", description: "Some text", time: "Yesterday", username: "johndoe", subject: "Electrical Engineering", firstName: "John", lastName: "Doe", profilePic: "profilePic"),
-    
-    post(title: "Atomic Orbitals", description: "Some text", time: "Yesterday", username: "johndoe", subject: "Electrical Engineering", firstName: "John", lastName: "Doe", profilePic: "profilePic"),
-    
-    post(title: "Zeroth Law of Thermodynamics", description: "Some text", time: "Yesterday", username: "johndoe", subject: "Electrical Engineering", firstName: "John", lastName: "Doe", profilePic: "profilePic")
-]
-
 struct HomeView: View {
     @State var shouldPresentSheet = false
+    @StateObject private var viewModel = PostViewModel()
     
     var body: some View {
         VStack {
-            
             Button(action: {
                 shouldPresentSheet.toggle()
             }) {
-                Text("New Post")
-                    .bold()
-                    .padding()
-                    .background(.customBlue)
-                    .foregroundStyle(.customPink)
-                    .clipShape(.capsule)
-                    .frame(maxWidth: .infinity, alignment: .trailing)
+                HStack(spacing: 12) {
+                    Text("New Post")
+                        .bold()
+                    
+                    Image(systemName: "pencil")
+                        .resizable()
+                        .scaledToFit()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 15, height: 15)
+                }
+                .padding()
+                .background(.customBlue)
+                .clipShape(.capsule)
+                .foregroundStyle(.customPink)
+                .frame(maxWidth: .infinity, alignment: .trailing)
+                
             }
             .sheet(isPresented: $shouldPresentSheet, content: {
                 AddPostView()
             })
+            
             
             Text("Home")
                 .font(.custom("AveriaGruesaLibre-Regular", size: 40))
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             Spacer()
+                .frame(height: 50)
             
-            VStack {
+            VStack(spacing: 25) {
                 HStack {
                     Text("Recent Posts")
                         .font(.system(size: 24, weight: .medium))
                     Spacer()
-                    NavigationLink(destination: EditProfileView().toolbar(.hidden, for: .tabBar)) {
-                        Text("View More")
+                    NavigationLink(destination: MorePostsView().toolbar(.hidden, for: .tabBar)) {
+                        HStack {
+                            Text("View More")
+                                .foregroundStyle(.black)
+                                .font(.system(size: 12, weight: .medium))
+                            Image(systemName: "arrow.right")
+                                .resizable()
+                                .scaledToFit()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 10, height: 10)
+                                .foregroundStyle(.black)
+                        }
+                    }
+                }
+                
+                VStack {
+                    ForEach(viewModel.posts.prefix(3), id: \.id) { post in
+                        PostRow(post: post)
                     }
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             
-            VStack {
-//                ForEach(placeholders, id: \.self) { name in
-//                    NavigationLink(destination: Text("Second view")) {
-//                        Text(name)
-//                    }
-//                }
-            }
+            
             
             Spacer()
             
         }
-        .frame(maxWidth: 325)
+        .frame(maxWidth: 350)
     }
 }
 

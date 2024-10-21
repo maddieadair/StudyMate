@@ -18,10 +18,10 @@ struct MainView: View {
                 
                 NotificationsView()
                     .tabItem {
-                        Image(systemName: "star")
+                        Image(systemName: "bell.fill")
                     }
 
-                MessagesView()
+                InboxView()
                     .tabItem {
                         Image(systemName: "message")
                     }
